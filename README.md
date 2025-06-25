@@ -7,9 +7,9 @@ A robust digital document verification and authentication system that leverages 
 
 - Blockchain-Based Document Authentication
   - Hashes (via BLAKE3) of uploaded documents are stored on the blockchain for integrity and verification.
-- Real-Time Face Verification**
+- Real-Time Face Verification
   - Captures a live selfie and compares it to ID/passport photos for user identity validation.
-- QR Code Generation**
+- QR Code Generation
   - Generates unique QR codes for each verified document for easy and secure validation.
 - NIDS (Network Intrusion Detection System)
   - Detects cyber threats such as DDoS attacks, malware injections, and unauthorized access.
