@@ -1,0 +1,81 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Login</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            background-image: url('central.png'); /* Change to your background image URL */  
+            background-size: cover;  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            height: 100vh;  
+            margin: 0;  
+        }  
+        .login-container {  
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */  
+            padding: 20px;  
+            border-radius: 8px;  
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  
+            width: 300px; /* Set a fixed width for the container */  
+        }  
+        h1 {  
+            text-align: center;  
+            color: white;  
+            margin-bottom: 15px;  
+        }  
+        label {  
+            display: block;  
+            margin-top: 10px;  
+            color: white;  
+        }  
+        input {  
+            width: 100%; /* Full width */  
+            padding: 10px; /* Add padding */  
+            margin-top: 5px;  
+            border-radius: 5px;  
+            border: none;  
+            box-sizing: border-box; /* Ensure padding is included in total width */  
+        }  
+        button {  
+            margin-top: 15px;  
+            padding: 10px;  
+            background-color: #007bff; /* Primary color */  
+            color: white;  
+            border: none;  
+            border-radius: 5px;  
+            cursor: pointer;  
+            width: 100%;  
+        }  
+        button:hover {  
+            background-color: #0056b3; /* Darker blue on hover */  
+        }  
+        p {  
+            text-align: center;  
+            color: #ffc107; /* Link color */  
+        }  
+    </style>  
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent form submission
+            window.location.href = 'upload.html'; // Redirect to upload.html
+        }
+    </script>
+</head>  
+<body>  
+    <div class="login-container">  
+        <h1>Login</h1>  
+        <form onsubmit="handleLogin(event)">  
+            <label for="email">Email:</label>  
+            <input type="email" id="email" name="email" required>  
+            <label for="password">Password:</label>  
+            <input type="password" id="password" name="password" required>  
+            <button type="submit">Submit</button>  
+        </form>  
+        <p><a href="signin.html" style="color: #ffc107;">Don't have an account? Sign In</a></p>  
+    </div>  
+</body>  
+</html>
