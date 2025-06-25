@@ -1,1 +1,8 @@
-
+User Uploads passport/ID.
+Generates BLAKE3 Hash and QR Code of the document.
+User have to takes a live selfie.
+System Verifies Identity via real-time face match.
+Smart Contract Stores the hash on the blockchain.
+QR Code is generated and given to the user.
+Verifiers/Admins scan QR and re-verify through the blockchain.
+NIDS System Logs and monitors the network for anomalies.
