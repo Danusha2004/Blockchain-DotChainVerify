@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Passport Face Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: url('central.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container {
+      background: rgba(216, 248, 255, 0.966);
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .result img {
+      max-width: 100%;
+      margin-top: 10px;
+    }
+    .result p {
+      margin: 8px 0;
+    }
+    .loader {
+      display: none;
+    }
+    .user-info {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Passport Upload and Face Verification</h2>
+    <p class="user-info"><strong>Logged in as:</strong> <span id="userEmail"></span></p>
+
+    <form id="uploadForm">
+      <input type="file" name="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg" required>
+      <br><br>
+      <button type="submit">Upload</button>
+    </form>
+
+    <div id="loader" class="loader">Processing... Please wait.</div>
+    
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    // Check if user is logged in
+    document.addEventListener("DOMContentLoaded", () => {
+      const email = localStorage.getItem("user_email");
+      if (!email) {
+        alert("Session expired. Please sign in again.");
+        window.location.href = "signin.html";
+      } else {
+        document.getElementById("userEmail").textContent = email;
+      }
+    });
+
+    const form = document.getElementById('uploadForm');
+    const resultDiv = document.getElementById('result');
+    const loader = document.getElementById('loader');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const fileInput = document.getElementById('fileInput');
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      resultDiv.innerHTML = '';
+      loader.style.display = 'block';
+
+      fetch('http://127.0.0.1:5000/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        loader.style.display = 'none';
+
+        if (data.error) {
+          resultDiv.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+          return;
+        }
+
+        resultDiv.innerHTML = `
+          <p><strong>Passport Number:</strong> ${data.passport_number}</p>
+          <p><strong>Blake3 Hash:</strong> ${data.hash}</p>
+          <p><strong>Verification Result:</strong> ${data.verification_result}</p>
+
+          <p><strong>QR Code:</strong></p>
+          <img src="${data.qr_code}" alt="QR Code">
+
+          <p><strong>Extracted Face from Document:</strong></p>
+          <img src="${data.face_image}" alt="Extracted Face">
+
+          <p><strong>Real-time Captured Face:</strong></p>
+          <img src="${data.real_time_face}" alt="Real Time Face">
+        `;
+      })
+      .catch(err => {
+        loader.style.display = 'none';
+        resultDiv.innerHTML = `<p style="color: red;">Error: ${err.message}</p>`;
+      });
+    });
+  </script>
+
+</body>
+</html>

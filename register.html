@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enter OTP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('central.png');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .signin-container {
+      background: rgba(95, 217, 228, 0.43); /* semi-transparent black */
+      padding: 30px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(103, 2, 39, 0.4);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #1a1403;
+      margin-bottom: 10px;
+    }
+
+    label {
+      color: white;
+      display: block;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: none;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #message {
+      margin-top: 10px;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+
+  <script>
+    window.onload = function () {
+      const email = localStorage.getItem("user_email");
+      if (email) {
+        document.getElementById("emailDisplay").innerText = email;
+      } else {
+        alert("No email found! Redirecting to sign in.");
+        window.location.href = "signin.html";
+      }
+    };
+
+    function verifyOTP(event) {
+      event.preventDefault();
+      const otp = document.getElementById("otp").value;
+      if (otp.length === 6) {
+        alert("OTP Verified Successfully!");
+        window.location.href = "upload.html";
+      } else {
+        alert("Invalid OTP. Please try again.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="signin-container">
+    <h2>Enter OTP</h2>
+    <p>OTP sent to: <strong id="emailDisplay"></strong></p>
+    <form onsubmit="verifyOTP(event)">
+      <label for="otp">OTP:</label>
+      <input type="text" id="otp" required maxlength="6" />
+      <button type="submit">Verify OTP</button>
+    </form>
+  </div>
+</body>
+</html>
