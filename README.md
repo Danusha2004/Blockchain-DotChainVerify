@@ -11,21 +11,21 @@ A robust digital document verification and authentication system that leverages 
   - Captures a live selfie and compares it to ID/passport photos for user identity validation.
 - QR Code Generation**
   - Generates unique QR codes for each verified document for easy and secure validation.
-- NIDS (Network Intrusion Detection System)**
+- NIDS (Network Intrusion Detection System)
   - Detects cyber threats such as DDoS attacks, malware injections, and unauthorized access.
-- Admin Verification Dashboard**
+- Admin Verification Dashboard
   - Admins can verify document hashes, user identity, and manage the blockchain verification flow.
 
 ##  Tech Stack
 
 | Layer        | Tools / Languages                              |
 |--------------|------------------------------------------------|
-| Frontend     | HTML, JavaScript                               |
+| Frontend     | HTML, CSS, JavaScript                          |
 | Backend      | Python (Flask)                                 |
 | Blockchain   | Solidity Smart Contracts (via Remix IDE)       |
 | Hashing      | BLAKE3                                         |
 | QR Codes     | Python QR libraries (e.g., `qrcode`)           |
-| Face Match   | OpenCV, FaceNet and InsightFace                |
+| Face Match   | OpenCV, FaceNet , InsightFace                  |
 | Security     | Custom IDS Rules + Blockchain Audit Trails     |
 
 ##  Project Structure
